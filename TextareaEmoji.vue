@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="post-description-emoji" :class="[this.isEmoji? 'emojiactive':'']" @click='emojiShowOff'><i class="far fa-smile"></i></div>
+  <div class="post-description-emoji" :class="[this.isEmoji? 'emojiactive':'']" @click='emojiShowOff'>🙂</div>
           <textarea 
         class="form-control"
         rows="3" id="postDescriptionTextarea"
@@ -30,8 +30,6 @@
 <script>
 import { Picker } from 'emoji-mart-vue'
 export default{
-    props: ['thumbimage'],
-
   components:{
     Picker,
   },
@@ -62,22 +60,18 @@ export default{
         },
      select (emoji) {
       this.insertAtCaret('postDescriptionTextarea',emoji.native);
-      console.log(emoji.native);
     },
       postBtnActionFocus(txt){
         this.isEmoji = false;
-        this.$emit('textareaFocus', true);
       },
     postBtnActionBlur(){  
       if( this.postDescriptionTextarea.length == 0 && this.thumbimage.length==0){
-        this.$emit('textareaBlur', false);
       }
 
     },
     
     insertAtCaret(areaId,text) {
     var txtarea = document.getElementById(areaId);
-    console.log(txtarea);
 		var scrollPos = txtarea.scrollTop;
 		var strPos = 0;
 		var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ? 
